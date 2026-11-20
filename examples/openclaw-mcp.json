@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "moordeck-http": {
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:9112/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MOORDECK_TOKEN}"
+      }
+    },
+    "moordeck-stdio": {
+      "command": "mdk",
+      "args": ["mcp"],
+      "env": {
+        "MOORDECK_API_URL": "http://127.0.0.1:9112",
+        "MOORDECK_TOKEN": "${MOORDECK_TOKEN}"
+      }
+    }
+  }
+}
