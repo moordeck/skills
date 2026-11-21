@@ -13,7 +13,7 @@ Operate isolated Moordeck desktop profiles via the Local MCP server (`http://127
    ```bash
    mdk doctor --json
    ```
-2. **Launch an isolated stealth session** (`mode: "agent"` uses the zero-CDP native IPC bridge when running kernel `mc-155-v2+`, keeping `--remote-debugging-port` disabled):
+2. **Launch an isolated stealth session** (`mode: "agent"` uses the zero-CDP native IPC bridge when running kernel `mc-155-v3+`, keeping `--remote-debugging-port` disabled):
    ```bash
    mdk browser start --serial 1 --mode agent --trace-net --json
    ```

@@ -17,14 +17,14 @@ mdk net traces --serial 1 --json
 mdk net export --serial 1 --format har --out trace.har --json
 ```
 
-Static assets (`image`, `font`, `stylesheet`) are filtered by default; pass `--include-static` to inspect all traffic. Each captured endpoint is classified as `public_readonly`, `session_api`, `needs_signed_payload`, or `high_risk_challenge`.
+Static assets (`image`, `font`, `stylesheet`) are filtered by default; pass `--include-static` to inspect all traffic. Sensitive headers (`cookie`, `set-cookie`, `authorization`, `proxy-authorization`, `x-api-key`, `x-csrf-token`) are redacted by default unless `admin:cookies` is granted and `--no-redact` is explicitly requested. Each captured endpoint is classified as `public_readonly`, `cookie_replayable`, or `dynamic_signed_suspect`.
 
 ## Hand Off to `curl_cffi` (`http-descriptor`)
 
-Fetch the exact aligned headers, `Sec-CH-UA*` client hints, decrypted session cookies, closest `curl_cffi` TLS impersonation target, and local session proxy endpoint:
+Fetch the exact aligned headers, `Sec-CH-UA*` client hints, decrypted session cookies (requires `admin:cookies`), closest `curl_cffi` TLS impersonation target with `CurlHttpVersion.V2_0`, and local session proxy endpoint:
 
 ```bash
-mdk profiles http-descriptor <profileId> --json
+mdk profiles http-descriptor --serial 1 --domain app.example.com --json
 ```
 
 ## Record & Replay UI Flows
